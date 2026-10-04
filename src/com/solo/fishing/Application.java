@@ -9,7 +9,9 @@ public class Application {
 
         Fisher fisher = new Fisher();
 
-        while(true) {
+        boolean isOn = true;
+
+        while(isOn) {
             System.out.println("============== 🎣 낚시왕 ==============");
             fisher.showStatus();
             System.out.println("=======================================");
@@ -18,7 +20,7 @@ public class Application {
             System.out.println("3. 시장에서 팔기");
             System.out.println("4. 낚싯대 강화");
             System.out.println("9. 프로그램 종료");
-            System.out.println("=======================================");
+            System.out.println("=======================================\n");
             
             int menu = sc.nextInt();
 
@@ -29,26 +31,31 @@ public class Application {
                         int reel_count = sc.nextInt();
                         fisher.reel(reel_count);
                     }
+                    break;
                 }
                 
                 case 2: {
                     fisher.showBucket();
+                    break;
                 }
 
                 case 3: {
                     fisher.sellAll();
                     if(fisher.isFishingKing()) {
                         System.out.println("🏆 축하합니다! 소지금 10,000원 달성! 당신은 이제 낚시왕입니다!");
+                        isOn = false;
                         break;
                     }
                 }
 
                 case 4: {
                     fisher.upgradeRod();
+                    break;
                 }
 
                 case 9: {
                     System.out.println("게임을 종료합니다.");
+                    isOn = false;
                     break;
                 }
             }

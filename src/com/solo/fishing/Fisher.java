@@ -8,7 +8,7 @@ public class Fisher {
     private Fish hookedFish;                // 지금 걸려 있는 물고기 (입질이 없으면 null)
 
     public void showStatus() {
-        System.out.printf("소지금: %d원 | 낚싯대 Lv.%d | 양동이 %d/5", money,
+        System.out.printf("소지금: %d원 | 낚싯대 Lv.%d | 양동이 %d/5\n", money,
         rod.getLevel(), bucket.getCount());
         
     }
@@ -20,7 +20,7 @@ public class Fisher {
         } else {
             System.out.println("... 찌가 흔들린다 ...");
             hookedFish = pond.randomFish();
-            System.out.printf("!!! 입질이다 !!! (힘 %d ~ %d 사이)", hookedFish.getHintMin(), hookedFish.getHintMax());
+            System.out.printf("!!! 입질이다 !!! (힘 %d ~ %d 사이)\n\n", hookedFish.getHintMin(), hookedFish.getHintMax());
             return true;
         }
     }
@@ -29,8 +29,9 @@ public class Fisher {
         if(hookedFish != null) {
             int diff = Math.abs(hookedFish.getStrength() - input);
             if(diff <= rod.getTolerance()) {
-                System.out.println("성공");
                 bucket.add(hookedFish);
+                System.out.printf("\n🎉 %s를 낚았다! 양동이에 담았어요 (%d/5)\n\n",
+                hookedFish.getName(), bucket.getCount());
                 hookedFish = null;
             } else {
                 System.out.println("실패");
