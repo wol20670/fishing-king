@@ -50,7 +50,7 @@ public class Fisher {
             System.out.println("양동이가 비어있습니다.");
         } else {
             int sell = bucket.getTotalPrice();
-            System.out.printf("판매금액은 %d입니다.", sell);
+            System.out.printf("🐟 물고기 %d마리를 %d원에 팔았어요!", bucket.getCount(), sell);
             money += sell;
             bucket.empty();
         }

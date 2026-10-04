@@ -32,19 +32,24 @@ public class Application {
                 }
                 
                 case 2: {
-
+                    fisher.showBucket();
                 }
 
                 case 3: {
-
+                    fisher.sellAll();
+                    if(fisher.isFishingKing()) {
+                        System.out.println("🏆 축하합니다! 소지금 10,000원 달성! 당신은 이제 낚시왕입니다!");
+                        break;
+                    }
                 }
 
                 case 4: {
-
+                    fisher.upgradeRod();
                 }
 
                 case 9: {
-
+                    System.out.println("게임을 종료합니다.");
+                    break;
                 }
             }
         }
