@@ -8,32 +8,71 @@ public class Fisher {
     private Fish hookedFish;                // 지금 걸려 있는 물고기 (입질이 없으면 null)
 
     public void showStatus() {
-        System.out.println("현재 돈은 " + money + "원, " + "낚싯대 레벨은 " + rod.getLevel() +
-        "양동이 칸 수는 " + bucket.getCount() + "이다.");
+        System.out.printf("소지금: %d원 | 낚싯대 Lv.%d | 양동이 %d/5", money,
+        rod.getLevel(), bucket.getCount());
+        
     }
 
     public boolean cast() {
-        (hookedFish.getHintMax()) ? 
+        if(bucket.isFull()) {
+            System.out.println("양동이가 가득 찼습니다.");
+            return false;
+        } else {
+            System.out.println("... 찌가 흔들린다 ...");
+            hookedFish = pond.randomFish();
+            System.out.printf("!!! 입질이다 !!! (힘 %d ~ %d 사이)", hookedFish.getHintMin(), hookedFish.getHintMax());
+            return true;
+        }
     }
 
     public void reel(int input) {
-
+        if(hookedFish != null) {
+            int diff = Math.abs(hookedFish.getStrength() - input);
+            if(diff <= rod.getTolerance()) {
+                System.out.println("성공");
+                bucket.add(hookedFish);
+                hookedFish = null;
+            } else {
+                System.out.println("실패");
+                hookedFish = null;
+            }
+        } else {
+            System.out.println("입질 없음.");
+        }
     }
 
     public void showBucket() {
-
+        bucket.show();
     }
 
     public void sellAll() {
-
+        if(bucket.isEmpty()) {
+            System.out.println("양동이가 비어있습니다.");
+        } else {
+            int sell = bucket.getTotalPrice();
+            System.out.printf("판매금액은 %d입니다.", sell);
+            money += sell;
+            bucket.empty();
+        }
     }
 
     public void upgradeRod() {
-
+        if(rod.isMaxLevel()) {
+            System.out.println("이미 최고 레벨입니다.");
+        }
+            else {
+                int cost = rod.getUpgradeCost();
+                if (money >= cost) {
+                    money -= cost;
+                    rod.upgrade();
+                } else {
+                    System.out.printf("%d원이 부족합니다.", cost - money);
+                }
+            }
     }
 
     public boolean isFishingKing() {
-
-    }
+        return (money >= 10000);
+    }   
 
 }

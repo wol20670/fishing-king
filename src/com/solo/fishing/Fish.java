@@ -8,7 +8,7 @@ public class Fish {
     
     public Fish(String name, int strength, int price) {
             this.name = name;
-            this. strength = strength;
+            this.strength = strength;
             this.price = price;
     }
 
