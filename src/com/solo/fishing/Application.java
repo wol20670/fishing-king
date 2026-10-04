@@ -45,6 +45,8 @@ public class Application {
                         System.out.println("🏆 축하합니다! 소지금 10,000원 달성! 당신은 이제 낚시왕입니다!");
                         isOn = false;
                         break;
+                    } else { 
+                        continue;
                     }
                 }
 
@@ -56,6 +58,11 @@ public class Application {
                 case 9: {
                     System.out.println("게임을 종료합니다.");
                     isOn = false;
+                    break;
+                }
+
+                default : {
+                    System.out.println("잘못된 메뉴 번호 입니다. 다시 입력해주세요.");
                     break;
                 }
             }

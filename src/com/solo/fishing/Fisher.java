@@ -43,7 +43,11 @@ public class Fisher {
     }
 
     public void showBucket() {
-        bucket.show();
+        if (bucket.getCount() != 0) {
+            bucket.show();
+        } else {
+            System.out.println("양동이가 비어있습니다.\n\n");
+        }
     }
 
     public void sellAll() {
@@ -51,7 +55,7 @@ public class Fisher {
             System.out.println("양동이가 비어있습니다.");
         } else {
             int sell = bucket.getTotalPrice();
-            System.out.printf("🐟 물고기 %d마리를 %d원에 팔았어요!", bucket.getCount(), sell);
+            System.out.printf("\n🐟 물고기 %d마리를 %d원에 팔았어요!\n\n", bucket.getCount(), sell);
             money += sell;
             bucket.empty();
         }
@@ -66,8 +70,9 @@ public class Fisher {
                 if (money >= cost) {
                     money -= cost;
                     rod.upgrade();
+                    System.out.printf("\n낚싯대가 Lv.%d로 강화되었습니다.\n\n", rod.getLevel());
                 } else {
-                    System.out.printf("%d원이 부족합니다.", cost - money);
+                    System.out.printf("\n%d원이 부족합니다.\n\n", cost - money);
                 }
             }
     }

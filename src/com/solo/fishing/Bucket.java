@@ -25,9 +25,11 @@ public class Bucket {
     }   
 
     public void show() { // 담긴 물고기 목록 출력
-        for(int i = 0; i < count; i++) {
+        System.out.println("현재 담긴 물고기는 ");
+        for(int i = 0; i < count; i++) {  
             System.out.println(fishes[i].getName());
         }
+        System.out.println("입니다.");
     }  
 
     public void empty() { // 비우기 (count를 0으로)
